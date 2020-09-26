@@ -5,7 +5,7 @@ class Game < ApplicationRecord
   has_many :favorites
   has_many :favorite_users, through: :favorites, source: :user
  
-  validates :name, presence: true, length: { maximum: 255 }
+  validates :name, presence: true, length: { maximum: 100 }
   validates :platform, presence: true, length: { maximum: 255 }
 
 end

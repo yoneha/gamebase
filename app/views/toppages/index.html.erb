@@ -6,8 +6,9 @@
           ゲームタイトルの追加
         </div>
         <div class="card-body">
-          <aside>
             <%= form_with(model: @game, local: true) do |f| %>
+              <%= render 'layouts/error_messages', model: f.object %>
+              
               <div class="form-group">
                 <%= f.label :name, 'Game Title' %>
                 <%= f.text_field :name, class: 'form-control' %>
@@ -18,13 +19,12 @@
               </div>
               <%= f.submit '新規追加', class: 'btn btn-primary btn-block' %>
             <% end %>
-          </aside>
         </div>
       </div>
     </div>
 
     <div class="col-9">
-      <%= render 'games/games', games: @games %>
+      <%= render 'games/games', games: Game.all %>
     </div>
   </div>
   

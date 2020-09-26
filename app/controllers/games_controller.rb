@@ -12,7 +12,7 @@ class GamesController < ApplicationController
       redirect_to root_url
     else
       flash[:danger] = 'ゲームの新規登録に失敗しました。'
-      redirect_to root_url
+      render "toppages/index"
     end
     
   end
