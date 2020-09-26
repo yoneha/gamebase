@@ -10,8 +10,8 @@
     </div>
   </aside>
   <div class="col-sm-8">
-    <h3>Myオススメ度(平均)：<%=@user.reviews.average(:score)%></h3>
-    <h3>Myプレイ時間(平均)：<%=@user.reviews.average(:playtime)%> 時間</h3>
+    <h3>Myオススメ度(平均)：<%=@user.reviews.average(:score).round(1)%></h3>
+    <h3>Myプレイ時間(平均)：<%=@user.reviews.average(:playtime).round(1)%> 時間</h3>
     <ul class="nav nav-tabs nav-justified mb-3">
       <li class="nav-item"><a href="<%= user_path(@user) %>" class="nav-link <%= 'active' if current_page?(user_path(@user)) %>">My Reviews <span class="badge badge-secondary"><%= @count_mygames %></span></a></li>
       <li class="nav-item"><a href="<%= likes_user_path(@user) %>" class="nav-link <%= 'active' if current_page?(likes_user_path(@user)) %>">Favorite Games  <span class="badge badge-secondary"><%= @count_favorites %></span></a></li>
