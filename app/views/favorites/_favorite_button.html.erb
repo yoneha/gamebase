@@ -1,0 +1,11 @@
+<% if current_user.is_favorite?(game) %>
+<%= form_with(model: current_user.favorites.find_by(game_id: game.id), local: true, method: :delete) do |f| %>
+  <%= hidden_field_tag :game_id, game.id %>
+  <%= f.submit '解除', class: 'btn btn-secondary btn-sm' %>
+<% end %>
+<% else %>
+<%= form_with(model: current_user.favorites.build, local: true) do |f| %>
+  <%= hidden_field_tag :game_id, game.id %>
+  <%= f.submit 'お気に入り', class: 'btn btn-success btn-sm' %>
+<% end %>
+<% end %>

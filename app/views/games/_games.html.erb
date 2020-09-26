@@ -1,0 +1,25 @@
+<ul class="list-unstyled">
+  <table class="table table-striped table-bordered">
+    <tr>
+      <th class="text-center">ゲームタイトル</th>
+      <th class="text-center">PF</th>
+      <th class="text-center">オススメ度(平均)</th>
+      <th class="text-center">プレイ時間(平均)</th>
+      <th class="text-center">レビュー数</th>
+      <th class="text-center">お気に入り</th>
+    </tr>
+    
+    <% games.each do |game| %>
+      <tr>
+        <td class="text-left"><%= link_to game.name, game_path(game)%></td>
+        <td class="text-center"><span class="badge badge-dark"><%= game.platform %></span></td>
+        <td class="text-left"><%= game.reviews.average(:score) || "-" %></td>
+        <td class="text-left"><%= game.reviews.average(:score) || "-" %> 時間</td>
+        <td class="text-left"><%= game.reviews.count %>件</td>
+        <td class="text-center"><%= render 'favorites/favorite_button', game: game %></a></td>
+      </tr>
+    <% end %>
+    
+  </table>
+
+</ul>

@@ -1,0 +1,36 @@
+<div>
+  <h2><%= @game.name %></h2>
+  <p>on <span class="badge badge-dark"><%= @game.platform %></span></p>
+</div>
+
+<h1 class="text-center">レビュー新規投稿</h1>
+
+<div class="row">
+  <div class="col-sm-6 offset-sm-3">
+
+    <%= form_with(model: @review, local: true) do |f| %>
+      <%= render 'layouts/error_messages', model: f.object %>
+      
+      <div class="form-group">
+        <%= f.label :score, 'オススメ度' %>
+        <%= f.number_field  :score, class: 'form-control' %>
+      </div>
+      <div class="form-group">
+        <%= f.label :playtime, 'プレイ時間' %>
+        <%= f.number_field :playtime, class: 'form-control' %>
+      </div>
+      
+      <div class="form-group">
+        <%= f.label :title, 'レビュータイトル' %>
+        <%= f.text_field :title, class: 'form-control' %>
+      </div>
+      
+      <div class="form-group">
+        <%= f.label :content, 'レビュー詳細' %>
+        <%= f.text_area :content, class: 'form-control' %>
+      </div>
+      
+      <%= f.submit '新規レビューを投稿する', class: 'btn btn-dark btn-block' %>
+    <% end %>
+  </div>
+</div>

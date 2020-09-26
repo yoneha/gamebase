@@ -1,0 +1,40 @@
+<div>
+  <h2><%= @game.name %></h2>
+  <p>on <span class="badge badge-dark"><%= @game.platform %></span></p>
+</div>
+
+<div class="text-center">
+  <h3>オススメ度(平均)：<%= @game.reviews.average(:score) %></h3>
+  <h3>プレイ時間(平均)：<%= @game.reviews.average(:playtime) %>時間</h3>
+</div>
+
+<h4>User Review</h4>
+<div class="row">
+  <div class="text-center col-md-4">
+    <% unless current_user.reviews.find_by(game_id: @game.id) %>
+      <%= link_to 'このゲームのレビューを投稿', new_review_path(@game), class: 'btn btn-dark' %>
+    <% else %>
+      <%= link_to '自分レビューを編集する', edit_review_path(current_user.reviews.find_by(game_id: @game.id)), class: 'btn btn-info btn-block' %>
+      <%= link_to "削除", current_user.reviews.find_by(game_id: @game.id), method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-block' %>
+    <% end %>
+  </div>
+  
+  <ul class="list-unstyled col-md-8">
+    <% @game.reviews.order(id: :desc).each do |review| %>
+      <li class="media mb-3">
+        <img class="mr-2 rounded" src="<%= gravatar_url(review.user, { size: 50 }) %>" alt="">
+        <div class="media-body">
+          <div>
+            <%= link_to review.user.name, user_path(review.user) %> <span class="text-muted">posted at <%= review.created_at %></span>
+          </div>
+          <div>
+            <div class="font-weight-bold text-dark"><u><%=link_to review.title, review, :style=>"color:black;"%></u></div>
+            <span class="badge badge-primary">オススメ度：<%=review.score%></span> <span class="badge badge-secondary"><%=review.playtime%>時間プレイ</span>
+            <p><%= review.content %></p>
+          </div>
+        </div>
+      </li>
+    <% end %>
+  </ul>
+
+</div>

@@ -1,0 +1,56 @@
+<div class="row">
+  <aside class="col-sm-4">
+    <div class="card">
+      <div class="card-header text-white bg-dark">
+        <h3 class="card-title"><%= @review.user.name %></h3>
+      </div>
+      <div class="card-body">
+        <img class="rounded img-fluid" src="<%= gravatar_url(@review.user, { size: 500 }) %>" alt="">
+      </div>
+    </div>
+  </aside>
+  <div class="col-sm-8">
+    
+  <div>
+    <h2><%= @review.game.name %></h2>
+    <p>on <span class="badge badge-dark"><%= @review.game.platform %></span></p>
+  </div>
+  
+  <div class="text-center">
+    <h1>レビュー編集</h1>
+  </div>
+  
+  <div class="row">
+    <div class="col-sm-6 offset-sm-3">
+  
+      <%= form_with(model: @review, local: true) do |f| %>
+        <%= render 'layouts/error_messages', model: f.object %>
+        
+        <div class="form-group">
+          <%= f.label :score, 'オススメ度' %>
+          <%= f.number_field  :score, class: 'form-control' %>
+        </div>
+        <div class="form-group">
+          <%= f.label :playtime, 'プレイ時間' %>
+          <%= f.number_field :playtime, class: 'form-control' %>
+        </div>
+        
+        <div class="form-group">
+          <%= f.label :title, 'レビュータイトル' %>
+          <%= f.text_field :title, class: 'form-control' %>
+        </div>
+        
+        <div class="form-group">
+          <%= f.label :content, 'レビュー詳細' %>
+          <%= f.text_area :content, class: 'form-control' %>
+        </div>
+        
+        <%= hidden_field_tag :user_id, @review.user_id %>
+        <%= hidden_field_tag :game_id, @review.game_id %>
+        <%= f.submit 'レビューを再投稿する', class: 'btn btn-dark btn-block' %>
+      <% end %>
+    </div>
+  </div>
+
+  </div>
+</div>

@@ -1,0 +1,24 @@
+<ul class="list-unstyled">
+  <table class="table table-striped table-bordered">
+    <tr>
+      <th class="text-center">ゲームタイトル</th>
+      <th class="text-center">PF</th>
+      <th class="text-center">Myオススメ度</th>
+      <th class="text-center">Myプレイ時間</th>
+      <th class="text-center">レビュー</th>
+    </tr>
+    
+    <% user.reviews.each do |review| %>
+      <tr>
+        <td class="text-left"><%= link_to review.game.name, game_path(review.game)%></td>
+        <td class="text-center"><span class="badge badge-dark"><%= review.game.platform %></span></td>
+        <td class="text-center"><%= review.score %></td>
+        <td class="text-center"><%= review.playtime %> 時間</td>
+        <td class="text-center"><%=link_to "詳細", review, class: 'btn btn-dark'%></a></td>
+        
+      </tr>
+    <% end %>
+    
+  </table>
+
+</ul>
