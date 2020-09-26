@@ -15,7 +15,7 @@
         <td class="text-center"><span class="badge badge-dark"><%= game.platform %></span></td>
         <td class="text-center">
           <%= 
-            if game.reviews
+            if game.reviews.count != 0
               game.reviews.average(:score).round(1)
             else
               "-"
@@ -23,7 +23,7 @@
         </td>
         <td class="text-center">
           <%= 
-            if game.reviews
+            if game.reviews.count != 0
               game.reviews.average(:playtime).round(1)
             else
               "-" 
