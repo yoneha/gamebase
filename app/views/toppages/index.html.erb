@@ -24,7 +24,7 @@
     </div>
 
     <div class="col-9">
-      <%= render 'games/games', games: Game.all %>
+      <%= render 'games/games', games: Game.all.order(id: "DESC") %>
     </div>
   </div>
   
