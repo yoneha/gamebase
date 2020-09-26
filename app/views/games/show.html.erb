@@ -4,8 +4,24 @@
 </div>
 
 <div class="text-center">
-  <h3>オススメ度(平均)：<%= @game.reviews.average(:score).round(1) %></h3>
-  <h3>プレイ時間(平均)：<%= @game.reviews.average(:playtime).round(1) %>時間</h3>
+  <h3>オススメ度(平均)：
+    <%= 
+      if @user.reviews.count != 0
+        @game.reviews.average(:score).round(1) 
+      else
+        "-"
+      end
+    %>
+  </h3>
+  <h3>プレイ時間(平均)：
+    <%= 
+      if @user.reviews.count != 0
+        @game.reviews.average(:playtime).round(1) 
+      else
+        "-"
+      end
+    %>時間
+  </h3>
 </div>
 
 <h4>User Review</h4>

@@ -13,10 +13,24 @@
       <tr>
         <td class="text-left"><%= link_to game.name, game_path(game)%></td>
         <td class="text-center"><span class="badge badge-dark"><%= game.platform %></span></td>
-        <td class="text-center"><%= game.reviews.average(:score).round(1) || "-" %></td>
-        <td class="text-center"><%= game.reviews.average(:playtime).round(1) || "-" %> 時間</td>
+        <td class="text-center">
+          <%= 
+            if game.reviews
+              game.reviews.average(:score).round(1)
+            else
+              "-"
+            end%>
+        </td>
+        <td class="text-center">
+          <%= 
+            if game.reviews
+              game.reviews.average(:playtime).round(1)
+            else
+              "-" 
+            end%> 時間
+        </td>
         <td class="text-left"><%= game.reviews.count %>件</td>
-        <td class="text-center"><%= render 'favorites/favorite_button', game: game %></a></td>
+        <td class="text-center"><%= render 'favorites/favorite_button', game: game %></td>
       </tr>
     <% end %>
     
